@@ -12,7 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 
-@Path("/welcome")
+@Path("/")
 public class Home {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
