@@ -9,7 +9,7 @@ public class JerseyConfig extends ResourceConfig
     public JerseyConfig()
     {
         register(Home.class);
-
+        register(Admin.class);
     }
 
 }
