@@ -11,7 +11,7 @@ import java.sql.*;
 public class Research {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String retrive()
+    public String[] retrive()
     {
         ResultSet rs;
         String name = null;
@@ -36,11 +36,10 @@ public class Research {
             }
 
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return name;
+        return new String[]{name, creator,details};
 
 
     }
