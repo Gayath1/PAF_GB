@@ -1,7 +1,11 @@
 package com.example.demo;
 
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -11,6 +15,7 @@ import java.util.List;
 
 @Path("/retrive")
 public class Research {
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<model> retrive()
@@ -48,4 +53,6 @@ public class Research {
 
 
     }
+
 }
+
