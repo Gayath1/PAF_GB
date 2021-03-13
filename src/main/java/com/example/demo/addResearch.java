@@ -1,13 +1,15 @@
 package com.example.demo;
 
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+
+
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,20 +17,25 @@ import java.sql.PreparedStatement;
 @Path("/research")
 public class addResearch {
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String insert()
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response insert(@QueryParam("name") String name, @QueryParam("details") String details )
     {
+
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         String email = loggedInUser.getName();
+
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gb", "root", "Gayya");
 
-            String query = "insert into research(Name,Creator,details) VALUES(?,?,?)";
+            String query = "insert into research"+"(Name,Creator,details) VALUES"+"(?,?,?)";
             PreparedStatement st = con.prepareStatement(query);
+            st.setString(1,name);
             st.setString(2,email);
+            st.setString(3,details);
             st.executeUpdate();
+
         }
         catch (Exception e)
         {
@@ -36,6 +43,8 @@ public class addResearch {
         }
 
 
-        return email;
+        return Response.status(200)
+                .entity("AddData  name : " + name + ", details : " + details)
+                .build();
     }
 }
