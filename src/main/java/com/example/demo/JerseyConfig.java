@@ -12,6 +12,7 @@ public class JerseyConfig extends ResourceConfig
         register(Admin.class);
         register(Research.class);
         register(addResearch.class);
+        register(updateResearch.class);
     }
 
 }
