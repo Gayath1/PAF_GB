@@ -29,8 +29,8 @@ public class updateResearch {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1,name);
             st.setString(2,details);
-            st.setString(4,email);
             st.setString(3,id);
+            st.setString(4,email);
             st.executeUpdate();
 
         }
