@@ -25,12 +25,12 @@ public class updateResearch {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gb", "root", "Gayya");
 
-            String query = "UPDATE  research Name,details VALUES ?,? WHERE Creator = ? AND id = ?";
+            String query = ("UPDATE  research SET Name = ?,details = ?  WHERE  id = ?;");
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1,name);
             st.setString(2,details);
-            st.setString(3,email);
-            st.setString(4,id);
+            //st.setString(3,email);
+            st.setString(3,id);
             st.executeUpdate();
 
         }
