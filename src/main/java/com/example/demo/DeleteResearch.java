@@ -28,7 +28,7 @@ public class DeleteResearch {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gb", "root", "Gayya");
 
-            String query = ("Delete FROM research WHERE  id = ? AND Creator = ?;");
+            String query = ("Delete FROM research WHERE   Creator = ?;");
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1,id);
             st.setString(2,email);
