@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 @Path("/research")
 public class addResearch {
     @GET
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED})
     public Response insert(@QueryParam("name") String name, @QueryParam("details") String details )
     {
 
