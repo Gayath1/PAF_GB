@@ -16,9 +16,9 @@ import java.sql.PreparedStatement;
 
 @Path("/research")
 public class addResearch {
-    @GET
+    @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED})
-    public Response insert(@QueryParam("name") String name, @QueryParam ("details") String details )
+    public Response insert(@FormParam("name") String name, @FormParam ("details") String details )
     {
 
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
