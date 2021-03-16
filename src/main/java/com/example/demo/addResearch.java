@@ -3,7 +3,7 @@ package com.example.demo;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import javax.ws.rs.*;
@@ -16,9 +16,9 @@ import java.sql.PreparedStatement;
 
 @Path("/research")
 public class addResearch {
-    @GET
+    @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED})
-    public Response insert(@QueryParam("name") String name, @QueryParam("details") String details )
+    public Response insert(@QueryParam("name") String name, @QueryParam ("details") String details )
     {
 
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
