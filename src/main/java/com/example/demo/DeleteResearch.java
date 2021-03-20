@@ -13,7 +13,7 @@ import java.sql.PreparedStatement;
 @Path("/delete")
 public class DeleteResearch {
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_JSON,  MediaType.APPLICATION_FORM_URLENCODED})
     public Response delete(@FormParam("id") String id)
     {
 
@@ -25,7 +25,7 @@ public class DeleteResearch {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gb", "root", "Gayya");
 
-            String query = ("Delete FROM research WHERE  id = ? AND Creator = ?;");
+            String query = ("Delete FROM research WHERE  id = ? AND  Creator = ?;");
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1,id);
             st.setString(2,email);
