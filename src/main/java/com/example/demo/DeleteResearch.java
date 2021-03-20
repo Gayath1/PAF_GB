@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 
 @Path("/delete")
 public class DeleteResearch {
-    @GET
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response delete(@FormParam("id") String id)
     {
