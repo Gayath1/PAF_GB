@@ -3,10 +3,7 @@ package com.example.demo;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.Connection;
@@ -17,7 +14,7 @@ import java.sql.PreparedStatement;
 public class DeleteResearch {
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response delete(@QueryParam("id") String id)
+    public Response delete(@FormParam("id") String id)
     {
 
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
@@ -42,7 +39,7 @@ public class DeleteResearch {
 
 
         return Response.status(200)
-                .entity("DeleteData  name : " + id + ", details : " + email)
+                .entity("DeleteData  ID : " + id + ", User : " + email)
                 .build();
     }
 }
