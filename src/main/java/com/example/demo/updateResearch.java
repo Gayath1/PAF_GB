@@ -12,9 +12,9 @@ import java.sql.PreparedStatement;
 
 @Path("/update")
 public class updateResearch {
-    @GET
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response update(@QueryParam("id") String id, @QueryParam("name") String name, @QueryParam("details") String details )
+    @POST
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED})
+    public Response update(@FormParam("id") String id, @FormParam("name") String name, @FormParam("details") String details )
     {
 
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
@@ -25,7 +25,7 @@ public class updateResearch {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gb", "root", "Gayya");
 
-            String query = ("UPDATE  research SET Name = ?,details = ?  WHERE  id = ? AND Creator = ?;");
+            String query = ("UPDATE  research SET Name = ?, details = ?  WHERE  id = ? AND Creator = ?;");
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1,name);
             st.setString(2,details);
