@@ -20,7 +20,7 @@ import java.sql.PreparedStatement;
 public class uploadFile {
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED, MediaType.MULTIPART_FORM_DATA})
-    public Response insert1(@FormParam("name") String name, @FormParam ("details") String details, @FormParam("data") String data )
+    public Response insert1(@FormParam("name") String name, @FormParam ("details") String details, InputStream data )
     {
 
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
@@ -36,7 +36,7 @@ public class uploadFile {
             st.setString(1,name);
             st.setString(2,email);
             st.setString(3,details);
-            st.setString(4,data);
+            st.setBlob(4,data);
             st.executeUpdate();
 
         }
@@ -47,7 +47,7 @@ public class uploadFile {
 
 
         return Response.status(200)
-                .entity("AddData  name : " + name + ", details : " + details)
+                .entity("AddData  name : " + name + ", details : " + details + ", file : "+ data)
                 .build();
     }
 }
