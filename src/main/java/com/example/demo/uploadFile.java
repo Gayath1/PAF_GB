@@ -1,48 +1,54 @@
-/*package com.example.demo;
+package com.example.demo;
 
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 @Path("/file")
 public class uploadFile {
     @POST
-    @Path("/upload")
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response upload(
-            @FormDataParam("file") InputStream uploadedInputStream,
-            @FormDataParam("file") FormDataContentDisposition fileDetail) {
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED, MediaType.MULTIPART_FORM_DATA})
+    public Response insert1(@FormParam("name") String name, @FormParam ("details") String details, @FormParam("data") String data )
+    {
 
-        String uploadedFileLocation = "D://" + fileDetail.getFileName();
-        writeToFile(uploadedInputStream, uploadedFileLocation);
-        String output = "File uploaded to : " + uploadedFileLocation;
-        return Response.status(200).entity(output).build();
-    }
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        String email = loggedInUser.getName();
 
-    private void writeToFile(InputStream uploadedInputStream,
-                             String uploadedFileLocation) {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gb", "root", "Gayya");
 
-        try {
-            OutputStream out = new FileOutputStream(new File(
-                    uploadedFileLocation));
-            int read = 0;
-            byte[] bytes = new byte[1024];
+            String query = "insert into research"+"(Name,Creator,details,data) VALUES"+"(?,?,?,?)";
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1,name);
+            st.setString(2,email);
+            st.setString(3,details);
+            st.setString(4,data);
+            st.executeUpdate();
 
-            out = new FileOutputStream(new File(uploadedFileLocation));
-            while ((read = uploadedInputStream.read(bytes)) != -1) {
-                out.write(bytes, 0, read);
-            }
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+
+        return Response.status(200)
+                .entity("AddData  name : " + name + ", details : " + details)
+                .build();
     }
 }
-*/
+
