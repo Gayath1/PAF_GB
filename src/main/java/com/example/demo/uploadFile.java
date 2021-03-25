@@ -1,17 +1,20 @@
 package com.example.demo;
 
 import com.sun.jersey.core.header.FormDataContentDisposition;
-import com.sun.jersey.multipart.FormDataParam;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import javax.servlet.http.Part;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import java.io.*;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,6 +28,7 @@ public class uploadFile {
 
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         String email = loggedInUser.getName();
+
 
         try
         {
@@ -44,6 +48,7 @@ public class uploadFile {
         {
             System.out.println(e.getMessage());
         }
+
 
 
         return Response.status(200)
