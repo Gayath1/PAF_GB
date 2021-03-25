@@ -32,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/").access("hasAuthority('User') or hasAuthority('Admin')")
                 .antMatchers("/retrive","/reasearch","/update","/delete","/file","user/research").access("hasAuthority('Researcher') or hasAuthority('Admin')")
+                .antMatchers("/retrive").access("hasAuthority('Funder')")
                 .antMatchers("/admin").access("hasAuthority('Admin')")
                 .anyRequest().authenticated()
                 .and()
