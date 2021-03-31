@@ -15,6 +15,6 @@ public class Profile {
     public String sayPlainTextHello() {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         String email = loggedInUser.getName();
-        return "Hello" + email;
+        return "Hello " + email;
     }
 }
