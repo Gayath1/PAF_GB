@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 
                 .antMatchers("/").access("hasAuthority('User') or hasAuthority('Admin') or hasAuthority('Researcher') or hasAuthority('Investor')")
-                .antMatchers("/reasearch","/update","/delete","user/research").access("hasAuthority('Researcher') or hasAuthority('Admin')")
+                .antMatchers("/reasearch","/update","/delete","user/research","/profile").access("hasAuthority('Researcher') or hasAuthority('Admin')")
                 .antMatchers("/retrive").access("hasAuthority('Funder') or hasAuthority('Admin')")
                 .antMatchers("/admin").access("hasAuthority('Admin')")
                 .anyRequest().authenticated()
