@@ -16,6 +16,7 @@ public class JerseyConfig extends ResourceConfig
         register(DeleteResearch.class);
         register(GetResearcherFiles.class);
         register(uploadFile.class);
+        register(Profile.class);
 
 
     }
