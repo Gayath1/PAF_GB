@@ -12,19 +12,20 @@ import org.jsoup.*;
 import org.jsoup.parser.*;
 import org.jsoup.nodes.Document;
 
-@Path("/Payment")
+
 
 public class PaymentServiceManagement {
 	PaymentManagement PaymentObj = new PaymentManagement();
 
 	@GET
-	@Path("/get")
+	@Path("/Payment/get")
 	@Produces(MediaType.TEXT_HTML)
 	public String readPayment() {
 		return PaymentObj.readPayment();
 	}
 
 	@POST
+	@Path("/Payment/add")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertPayment(@FormParam("pyId") String pyId,
@@ -36,7 +37,7 @@ public class PaymentServiceManagement {
 	}
 
 	@PUT
-	@Path("/update")
+	@Path("/Payment/update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 
@@ -58,7 +59,7 @@ public class PaymentServiceManagement {
 	}
 
 	@DELETE
-	@Path("/delete")
+	@Path("/Payment/delete")
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deletePayment(@FormParam("pyId") String pyId) {

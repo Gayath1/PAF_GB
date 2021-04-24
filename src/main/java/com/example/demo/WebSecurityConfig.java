@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/reasearch","/update","/delete","user/research","/profile").access("hasAuthority('Researcher') or hasAuthority('Admin')")
                 .antMatchers("/retrive").access("hasAuthority('Funder') or hasAuthority('Admin')")
                 .antMatchers("/admin").access("hasAuthority('Admin')")
-                .antMatchers("/Payment").access("hasAuthority('Admin') or hasAuthority('Customer')")
+                .antMatchers("/Payment/add").access("hasAuthority('Admin') or hasAuthority('Customer')")
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
