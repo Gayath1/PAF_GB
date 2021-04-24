@@ -1,4 +1,4 @@
-package com;
+package com.example.demo;
 
 import model.PaymentManagement;
 
@@ -6,8 +6,8 @@ import model.PaymentManagement;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 //For JSON
-import com.google.gson.*;
-//For XML 
+//import com.google.gson.*;
+//For XML
 import org.jsoup.*;
 import org.jsoup.parser.*;
 import org.jsoup.nodes.Document;
@@ -18,53 +18,55 @@ public class PaymentServiceManagement {
 	PaymentManagement PaymentObj = new PaymentManagement();
 
 	@GET
-	@Path("/")
+	@Path("/get")
 	@Produces(MediaType.TEXT_HTML)
 	public String readPayment() {
 		return PaymentObj.readPayment();
 	}
 
 	@POST
-	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String insertPayment(@FormParam("pyId") String pyId, 
-			@FormParam("payDes") String payDes, 
+	public String insertPayment(@FormParam("pyId") String pyId,
+			@FormParam("payDes") String payDes,
 			@FormParam("payDate") String payDate,
 			@FormParam("payAmount") String payAmount) {
 		String output = PaymentObj.insertPayment(pyId, payDes, payDate, payAmount);
 		return output;
 	}
-	
+
 	@PUT
-	@Path("/")
+	@Path("/update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 
-	public String updatePayment(String paymentData) {
+	public String updatePayment(@FormParam("pyId") String pyId,
+								@FormParam("payDes") String payDes,
+								@FormParam("payDate") String payDate,
+								@FormParam("payAmount") String payAmount) {
 		// Convert the input string to a JSON object
-		JsonObject PayObject = new JsonParser().parse(paymentData).getAsJsonObject();
+		//JsonObject PayObject = new JsonParser().parse(paymentData).getAsJsonObject();
 
 		// Read the values from the JSON object
-		String pyId = PayObject.get("pyId").getAsString();
-		String payDes = PayObject.get("payDes").getAsString();
-		String payDate = PayObject.get("payDate").getAsString();
-		String payAmount = PayObject.get("payAmount").getAsString();
-		
+		//String pyId = PayObject.get("pyId").getAsString();
+		//String payDes = PayObject.get("payDes").getAsString();
+		//String payDate = PayObject.get("payDate").getAsString();
+		//String payAmount = PayObject.get("payAmount").getAsString();
+
 		String output = PaymentObj.updatePayment(pyId, payDes, payDate, payAmount);
 		return output;
 	}
-	
+
 	@DELETE
-	@Path("/")
+	@Path("/delete")
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String deletePayment(String paymentData) {
+	public String deletePayment(@FormParam("pyId") String pyId) {
 		// Convert the input string to an XML document
-		Document doc = Jsoup.parse(paymentData, "", Parser.xmlParser());
+		//Document doc = Jsoup.parse(paymentData, "", Parser.xmlParser());
 
 		// Read the value from the element
-		String pyId = doc.select("pyId").text();
+		//String pyId = doc.select("pyId").text();
 		String output = PaymentObj.deletePayment(pyId);
 		return output;
 	}

@@ -17,6 +17,7 @@ public class JerseyConfig extends ResourceConfig
         register(GetResearcherFiles.class);
         register(uploadFile.class);
         register(Profile.class);
+        register(PaymentServiceManagement.class);
 
 
     }
