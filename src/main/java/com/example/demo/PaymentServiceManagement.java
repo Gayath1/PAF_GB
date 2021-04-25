@@ -13,7 +13,7 @@ import org.jsoup.parser.*;
 import org.jsoup.nodes.Document;
 
 
-
+@Path("/Payment/get")
 public class PaymentServiceManagement {
 	PaymentManagement PaymentObj = new PaymentManagement();
 
@@ -25,7 +25,7 @@ public class PaymentServiceManagement {
 	}
 
 	@POST
-	@Path("/Payment/add")
+
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertPayment(@FormParam("pyId") String pyId,
