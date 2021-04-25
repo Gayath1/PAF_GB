@@ -6,7 +6,7 @@ import model.Project;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 //For JSON
-import com.google.gson.*;
+//import com.google.gson.*;
 //For XML
 import org.jsoup.*;
 import org.jsoup.parser.*;
@@ -39,15 +39,16 @@ public class ProjectService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 
-	public String updateProject(String ProjectData) {
+	public String updateProject(@FormParam("pid") String pid,@FormParam("pname") String pname, @FormParam("des") String des,
+								@FormParam("price") String price) {
 		// Convert the input string to a JSON object
-		JsonObject ProjectObject = new JsonParser().parse(ProjectData).getAsJsonObject();
+		//JsonObject ProjectObject = new JsonParser().parse(ProjectData).getAsJsonObject();
 
 		// Read the values from the JSON object
-		String pid = ProjectObject.get("pid").getAsString();
-		String pname = ProjectObject.get("pname").getAsString();
-		String des = ProjectObject.get("des").getAsString();
-		String price = ProjectObject.get("price").getAsString();
+		//String pid = ProjectObject.get("pid").getAsString();
+		//String pname = ProjectObject.get("pname").getAsString();
+		//String des = ProjectObject.get("des").getAsString();
+		//String price = ProjectObject.get("price").getAsString();
 
 		String output = ProjectObj.updateProject(pid, pname, des, price);
 		return output;
@@ -57,12 +58,12 @@ public class ProjectService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String deleteProject(String ProjectData) {
+	public String deleteProject(@FormParam("pid") String pid) {
 		// Convert the input string to an XML document
-		Document doc = Jsoup.parse(ProjectData, "", Parser.xmlParser());
+		//Document doc = Jsoup.parse(ProjectData, "", Parser.xmlParser());
 
 		// Read the value from the element <itemID>
-		String pid = doc.select("pid").text();
+		//String pid = doc.select("pid").text();
 		String output = ProjectObj.deleteProject(pid);
 		return output;
 	}
