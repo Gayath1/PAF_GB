@@ -1,10 +1,10 @@
-package com;
+package com.example.demo;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 //For JSON
-import com.google.gson.*;
-//For XML 
+
+//For XML
 import org.jsoup.*;
 import org.jsoup.parser.*;
 import org.jsoup.nodes.Document;
@@ -26,7 +26,7 @@ public class FundingService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String insertFunding(@FormParam("fid") 
+	public String insertFunding(@FormParam("fid")
 	String fid, @FormParam("ftype") String ftype,
 
 			@FormParam("fsource") String fsource,

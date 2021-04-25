@@ -1,4 +1,4 @@
-package com;
+package com.example.demo;
 
 import model.Project;
 
@@ -7,7 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 //For JSON
 import com.google.gson.*;
-//For XML 
+//For XML
 import org.jsoup.*;
 import org.jsoup.parser.*;
 import org.jsoup.nodes.Document;

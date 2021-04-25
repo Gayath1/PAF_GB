@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.CustomerService;
+
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +20,8 @@ public class JerseyConfig extends ResourceConfig
         register(Profile.class);
         register(PaymentServiceManagement.class);
         register(CustomerService.class);
+        register(FundingService.class);
+        register(ProjectService.class);
 
 
     }
